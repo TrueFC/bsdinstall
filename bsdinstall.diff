@@ -1,0 +1,67 @@
+Index: usr.sbin/bsdinstall/bsdinstall
+===================================================================
+--- usr.sbin/bsdinstall/bsdinstall	(revision 339677)
++++ usr.sbin/bsdinstall/bsdinstall	(working copy)
+@@ -75,7 +75,7 @@
+ 	"") exec "/usr/libexec/bsdinstall/$VERB" "$@" 2> /dev/null ;;
+ 	# If begins with `+', send errors to both terminal and file (no `+')
+ 	+*) exec "/usr/libexec/bsdinstall/$VERB" "$@" \
+-		2>&1 >&$TERMINAL_STDOUT_PASSTHRU | tee "${debugFile#+}" ;;
++		2>&1 >&$TERMINAL_STDOUT_PASSTHRU | tee -a "${debugFile#+}" ;;
+ 	# Otherwise, just send errors to the file specified
+ 	*) exec "/usr/libexec/bsdinstall/$VERB" "$@" 2>> "$debugFile"
+ 	esac
+Index: usr.sbin/bsdinstall/scripts/script
+===================================================================
+--- usr.sbin/bsdinstall/scripts/script	(revision 339677)
++++ usr.sbin/bsdinstall/scripts/script	(working copy)
+@@ -120,7 +120,7 @@
+ 	# set ctime/mtime on the root of FAT partitions. tar has no option to
+ 	# ignore this. We probably need to switch back to distextract here
+ 	# to properly support EFI.
+-	tar -xf "$BSDINSTALL_DISTDIR/$set" -C $BSDINSTALL_CHROOT
++	tar -xPf "$BSDINSTALL_DISTDIR/$set" -C $BSDINSTALL_CHROOT
+ done
+ 
+ # Configure bootloader if needed
+Index: usr.sbin/bsdinstall/scripts/zfsboot
+===================================================================
+--- usr.sbin/bsdinstall/scripts/zfsboot	(revision 339677)
++++ usr.sbin/bsdinstall/scripts/zfsboot	(working copy)
+@@ -1437,6 +1437,9 @@
+ 	             "$zroot_name" || return $FAILURE
+ 
+ 	if [ "$ZFSBOOT_BOOT_POOL" ]; then
++		f_eval_catch $funcname zpool "$ZPOOL_SET" \
++	             "cachefile=\"$BSDINSTALL_CHROOT/boot/zfs/zpool.cache\"" \
++	             "$bootpool_name" || return $FAILURE
+ 		f_eval_catch $funcname printf "$PRINTF_CONF" \
+ 			vfs.root.mountfrom "\"zfs:$zroot_name/$zroot_bootfs\"" \
+ 			$BSDINSTALL_TMPBOOT/loader.conf.root || return $FAILURE
+@@ -1475,6 +1478,26 @@
+ 		             return $FAILURE
+ 	fi
+ 
++	if [ "$ZFSBOOT_BOOT_POOL" ]; then
++		local cachepath="$bootpool/boot/zfs/zpool.cache"
++		local cachedir="$BSDINSTALL_CHROOT/var/cache"
++		local cachefile="$cachedir/zpool.cache"
++
++		f_eval_catch $funcname mkdir "$MKDIR_P" $cachedir ||
++		             return $FAILURE
++		f_eval_catch $funcname cp "$COPY" $cachepath $cachedir ||
++		             return $FAILURE
++		f_eval_catch $funcname zpool "$ZPOOL_EXPORT" $bootpool_name ||
++		             return $FAILURE
++		f_eval_catch $funcname mkdir "$MKDIR_P" $bootpool/boot/zfs ||
++		             return $FAILURE
++		f_eval_catch $funcname cp "$COPY" $cachefile $cachepath ||
++		             return $FAILURE
++		f_eval_catch $funcname zpool "$ZPOOL_IMPORT_WITH_OPTIONS" \
++			     "-o altroot=\"$BSDINSTALL_CHROOT\"" \
++			     $bootpool_name || return $FAILURE
++	fi
++
+ 	# We're all done unless we should go on to do encryption
+ 	[ "$ZFSBOOT_GELI_ENCRYPTION" ] || return $SUCCESS
+ 
