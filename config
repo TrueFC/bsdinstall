@@ -1,0 +1,4 @@
+[run time path]
+usr.sbin/bsdinstall/bsdinstall -> usr/sbin/bsdinstall
+usr.sbin/bsdinstall/scripts/script -> usr/libexec/bsdinstall/script
+usr.sbin/bsdinstall/scripts/zfsboot -> usr/libexec/bsdinstall/zfsboot
