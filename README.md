@@ -22,9 +22,3 @@ boot time and will not boot properly. To solve this problem create
 zpool.cache with bootpool and zroot in /boot/zfs/zpool.cache with
 zpsboot on bootpool after creating bootpool, and on zroot as well
 zpool.cache in /boot/zfs/zpool.cache. 
-
-## Tag update history 
-
-* **13.0-CURRENT-r339677** (Wed 12 Dec 2018 07:25:34)
-
-	FreeBSD 13.0-CURRENT for revision 339677

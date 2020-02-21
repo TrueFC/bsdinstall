@@ -1,6 +1,6 @@
 Index: usr.sbin/bsdinstall/bsdinstall
 ===================================================================
---- usr.sbin/bsdinstall/bsdinstall	(revision 339677)
+--- usr.sbin/bsdinstall/bsdinstall	(revision 356739)
 +++ usr.sbin/bsdinstall/bsdinstall	(working copy)
 @@ -75,7 +75,7 @@
  	"") exec "/usr/libexec/bsdinstall/$VERB" "$@" 2> /dev/null ;;
@@ -13,7 +13,7 @@ Index: usr.sbin/bsdinstall/bsdinstall
  	esac
 Index: usr.sbin/bsdinstall/scripts/script
 ===================================================================
---- usr.sbin/bsdinstall/scripts/script	(revision 339677)
+--- usr.sbin/bsdinstall/scripts/script	(revision 356739)
 +++ usr.sbin/bsdinstall/scripts/script	(working copy)
 @@ -120,7 +120,7 @@
  	# set ctime/mtime on the root of FAT partitions. tar has no option to
@@ -26,19 +26,19 @@ Index: usr.sbin/bsdinstall/scripts/script
  # Configure bootloader if needed
 Index: usr.sbin/bsdinstall/scripts/zfsboot
 ===================================================================
---- usr.sbin/bsdinstall/scripts/zfsboot	(revision 339677)
+--- usr.sbin/bsdinstall/scripts/zfsboot	(revision 356739)
 +++ usr.sbin/bsdinstall/scripts/zfsboot	(working copy)
-@@ -1437,6 +1437,9 @@
+@@ -1413,6 +1413,9 @@
  	             "$zroot_name" || return $FAILURE
  
  	if [ "$ZFSBOOT_BOOT_POOL" ]; then
 +		f_eval_catch $funcname zpool "$ZPOOL_SET" \
-+	             "cachefile=\"$BSDINSTALL_CHROOT/boot/zfs/zpool.cache\"" \
-+	             "$bootpool_name" || return $FAILURE
++			"cachefile=\"$BSDINSTALL_CHROOT/boot/zfs/zpool.cache\"" \
++			"$bootpool_name" || return $FAILURE
  		f_eval_catch $funcname printf "$PRINTF_CONF" \
- 			vfs.root.mountfrom "\"zfs:$zroot_name/$zroot_bootfs\"" \
- 			$BSDINSTALL_TMPBOOT/loader.conf.root || return $FAILURE
-@@ -1475,6 +1478,26 @@
+ 			vfs.root.mountfrom \
+ 			"\"zfs:$zroot_name/$zroot_bootfs\"" \
+@@ -1452,6 +1455,26 @@
  		             return $FAILURE
  	fi
  
@@ -48,15 +48,15 @@ Index: usr.sbin/bsdinstall/scripts/zfsboot
 +		local cachefile="$cachedir/zpool.cache"
 +
 +		f_eval_catch $funcname mkdir "$MKDIR_P" $cachedir ||
-+		             return $FAILURE
++			     return $FAILURE
 +		f_eval_catch $funcname cp "$COPY" $cachepath $cachedir ||
-+		             return $FAILURE
++			     return $FAILURE
 +		f_eval_catch $funcname zpool "$ZPOOL_EXPORT" $bootpool_name ||
-+		             return $FAILURE
++			     return $FAILURE
 +		f_eval_catch $funcname mkdir "$MKDIR_P" $bootpool/boot/zfs ||
-+		             return $FAILURE
++			     return $FAILURE
 +		f_eval_catch $funcname cp "$COPY" $cachefile $cachepath ||
-+		             return $FAILURE
++			     return $FAILURE
 +		f_eval_catch $funcname zpool "$ZPOOL_IMPORT_WITH_OPTIONS" \
 +			     "-o altroot=\"$BSDINSTALL_CHROOT\"" \
 +			     $bootpool_name || return $FAILURE

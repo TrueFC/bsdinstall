@@ -1,0 +1,37 @@
+Updating Information for FreeBSD bsdinstall with installerconfig users.
+
+This file is maintained and copyrighted by Kazuhiko Kiriyama <kiri@TrueFC.org>.
+See end of file for further details.  For commonly done items, please see the
+COMMON ITEMS: section later in the file.  These instructions assume that you
+basically know what you are doing.
+
+
+20200221:
+	TAG: 13.0-CURRENT-r356739 created for OS revision 356739.
+	TAG: 13.0-CURRENT-r339677 created for OS revision 339677.
+
+COMMON ITEMS:
+FORMAT:
+
+This file contains a list, in reverse chronological order, of major
+breakages in tracking https://github.com/TrueFC/ports.
+
+Copyright information:
+
+Copyright 2020 Kiriyama Kazuhiko.  All Rights Reserved.
+
+Redistribution, publication, translation and use, with or without
+modification, in full or in part, in any form or format of this
+document are permitted without further permission from the author.
+
+THIS DOCUMENT IS PROVIDED BY WARNER LOSH ``AS IS'' AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED.  IN NO EVENT SHALL WARNER LOSH BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.

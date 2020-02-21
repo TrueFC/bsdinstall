@@ -18,11 +18,3 @@ FreeBSD で installerconfig を使ってインストールする人のための�
 #### 2. デフォルトでは bootpool の zpool.cache 情報が含まれませんので、起動
 時に bootpool がインポートされません。これを回避するには zpool.cache に
 zroot および bootpool を zpool.cache に書き込む必要があります。
-
----
-
-## タグの更新履歴
-
-* **13.0-CURRENT-r339677** (Wed 12 Dec 2018 07:25:34)
-
-	FreeBSD 13.0-CURRENT リビジョン 339677 用
