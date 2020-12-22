@@ -6,6 +6,9 @@ COMMON ITEMS: section later in the file.  These instructions assume that you
 basically know what you are doing.
 
 
+20201222:
+	TAG: 13.0-CURRENT-r367712 created for OS revision 367712.
+
 20200723:
 	TAG: 13.0-CURRENT-r363381 created for OS revision 363381.
 
