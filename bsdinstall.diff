@@ -1,8 +1,8 @@
-Index: usr.sbin/bsdinstall/bsdinstall
-===================================================================
---- usr.sbin/bsdinstall/bsdinstall	(revision 367712)
-+++ usr.sbin/bsdinstall/bsdinstall	(working copy)
-@@ -77,7 +77,7 @@
+diff --git a/usr.sbin/bsdinstall/bsdinstall b/usr.sbin/bsdinstall/bsdinstall
+index 1ca03f5c9593..6c9eab541405 100755
+--- a/usr.sbin/bsdinstall/bsdinstall
++++ b/usr.sbin/bsdinstall/bsdinstall
+@@ -77,7 +77,7 @@ if [ "$debug" ]; then
  	"") exec "/usr/libexec/bsdinstall/$VERB" "$@" 2> /dev/null ;;
  	# If begins with `+', send errors to both terminal and file (no `+')
  	+*) exec "/usr/libexec/bsdinstall/$VERB" "$@" \
@@ -11,24 +11,24 @@ Index: usr.sbin/bsdinstall/bsdinstall
  	# Otherwise, just send errors to the file specified
  	*) exec "/usr/libexec/bsdinstall/$VERB" "$@" 2>> "$debugFile"
  	esac
-Index: usr.sbin/bsdinstall/scripts/script
-===================================================================
---- usr.sbin/bsdinstall/scripts/script	(revision 367712)
-+++ usr.sbin/bsdinstall/scripts/script	(working copy)
-@@ -122,7 +122,7 @@
- 	# set ctime/mtime on the root of FAT partitions. tar has no option to
- 	# ignore this. We probably need to switch back to distextract here
- 	# to properly support EFI.
--	tar -xf "$BSDINSTALL_DISTDIR/$set" -C $BSDINSTALL_CHROOT
-+	tar -xPf "$BSDINSTALL_DISTDIR/$set" -C $BSDINSTALL_CHROOT
- done
- 
- # Configure bootloader if needed
-Index: usr.sbin/bsdinstall/scripts/zfsboot
-===================================================================
---- usr.sbin/bsdinstall/scripts/zfsboot	(revision 367712)
-+++ usr.sbin/bsdinstall/scripts/zfsboot	(working copy)
-@@ -1414,6 +1414,9 @@
+diff --git a/usr.sbin/bsdinstall/scripts/script b/usr.sbin/bsdinstall/scripts/script
+index 8d9dd5205132..6e5efcf0bed6 100755
+--- a/usr.sbin/bsdinstall/scripts/script
++++ b/usr.sbin/bsdinstall/scripts/script
+@@ -142,7 +142,7 @@ else
+ 		# case of EFI system partitions only. This *ONLY WORKS* if
+ 		# /boot/efi is empty and does not handle analagous problems on
+ 		# other systems (ARM, PPC64).
+-		tar -xf "$BSDINSTALL_DISTDIR/$set" -C $BSDINSTALL_CHROOT --exclude boot/efi
++		tar -xPf "$BSDINSTALL_DISTDIR/$set" -C $BSDINSTALL_CHROOT --exclude boot/efi
+ 		mkdir -p $BSDINSTALL_CHROOT/boot/efi
+ 	done
+ fi
+diff --git a/usr.sbin/bsdinstall/scripts/zfsboot b/usr.sbin/bsdinstall/scripts/zfsboot
+index 45c8b001c393..3b7fc8d1ab91 100755
+--- a/usr.sbin/bsdinstall/scripts/zfsboot
++++ b/usr.sbin/bsdinstall/scripts/zfsboot
+@@ -1455,6 +1455,9 @@ zfs_create_boot()
  	             "$zroot_name" || return $FAILURE
  
  	if [ "$ZFSBOOT_BOOT_POOL" ]; then
@@ -38,7 +38,7 @@ Index: usr.sbin/bsdinstall/scripts/zfsboot
  		f_eval_catch $funcname printf "$PRINTF_CONF" \
  			vfs.root.mountfrom \
  			"\"zfs:$zroot_name/$zroot_bootfs\"" \
-@@ -1453,6 +1456,26 @@
+@@ -1494,6 +1497,26 @@ zfs_create_boot()
  		             return $FAILURE
  	fi
  
