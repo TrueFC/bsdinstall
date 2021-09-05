@@ -6,6 +6,9 @@ COMMON ITEMS: section later in the file.  These instructions assume that you
 basically know what you are doing.
 
 
+20210906:
+	Correct wrong patch path in `config'.
+
 20210819:
 	TAG: 14.0-CURRENT-cc1345056b11 created for OS revision cc1345056b11.
 
