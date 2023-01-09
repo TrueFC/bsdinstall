@@ -12,10 +12,10 @@ index 1ca03f5c9593..6c9eab541405 100755
  	*) exec "/usr/libexec/bsdinstall/$VERB" "$@" 2>> "$debugFile"
  	esac
 diff --git a/usr.sbin/bsdinstall/scripts/script b/usr.sbin/bsdinstall/scripts/script
-index 8d9dd5205132..6e5efcf0bed6 100755
+index 24469589d1a5..f5104e94e5ff 100755
 --- a/usr.sbin/bsdinstall/scripts/script
 +++ b/usr.sbin/bsdinstall/scripts/script
-@@ -142,7 +142,7 @@ else
+@@ -143,7 +143,7 @@ else
  		# case of EFI system partitions only. This *ONLY WORKS* if
  		# /boot/efi is empty and does not handle analagous problems on
  		# other systems (ARM, PPC64).
@@ -25,10 +25,10 @@ index 8d9dd5205132..6e5efcf0bed6 100755
  	done
  fi
 diff --git a/usr.sbin/bsdinstall/scripts/zfsboot b/usr.sbin/bsdinstall/scripts/zfsboot
-index 45c8b001c393..3b7fc8d1ab91 100755
+index 1e771710cb7c..05b4def69bc4 100755
 --- a/usr.sbin/bsdinstall/scripts/zfsboot
 +++ b/usr.sbin/bsdinstall/scripts/zfsboot
-@@ -1455,6 +1455,9 @@ zfs_create_boot()
+@@ -1464,6 +1464,9 @@ zfs_create_boot()
  	             "$zroot_name" || return $FAILURE
  
  	if [ "$ZFSBOOT_BOOT_POOL" ]; then
@@ -38,7 +38,7 @@ index 45c8b001c393..3b7fc8d1ab91 100755
  		f_eval_catch $funcname printf "$PRINTF_CONF" \
  			vfs.root.mountfrom \
  			"\"zfs:$zroot_name/$zroot_bootfs\"" \
-@@ -1494,6 +1497,26 @@ zfs_create_boot()
+@@ -1512,6 +1515,26 @@ zfs_create_boot()
  		             return $FAILURE
  	fi
  
