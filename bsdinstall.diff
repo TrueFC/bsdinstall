@@ -25,7 +25,7 @@ index 24469589d1a5..f5104e94e5ff 100755
  	done
  fi
 diff --git a/usr.sbin/bsdinstall/scripts/zfsboot b/usr.sbin/bsdinstall/scripts/zfsboot
-index 1e771710cb7c..05b4def69bc4 100755
+index c2d42f830a73..5345c556ea53 100755
 --- a/usr.sbin/bsdinstall/scripts/zfsboot
 +++ b/usr.sbin/bsdinstall/scripts/zfsboot
 @@ -1464,6 +1464,9 @@ zfs_create_boot()
