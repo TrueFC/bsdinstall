@@ -1,8 +1,8 @@
 diff --git a/usr.sbin/bsdinstall/bsdinstall b/usr.sbin/bsdinstall/bsdinstall
-index 1ca03f5c9593..6c9eab541405 100755
+index 19e27c929aee..80972c655ba9 100755
 --- a/usr.sbin/bsdinstall/bsdinstall
 +++ b/usr.sbin/bsdinstall/bsdinstall
-@@ -77,7 +77,7 @@ if [ "$debug" ]; then
+@@ -76,7 +76,7 @@ if [ "$debug" ]; then
  	"") exec "/usr/libexec/bsdinstall/$VERB" "$@" 2> /dev/null ;;
  	# If begins with `+', send errors to both terminal and file (no `+')
  	+*) exec "/usr/libexec/bsdinstall/$VERB" "$@" \
@@ -12,10 +12,10 @@ index 1ca03f5c9593..6c9eab541405 100755
  	*) exec "/usr/libexec/bsdinstall/$VERB" "$@" 2>> "$debugFile"
  	esac
 diff --git a/usr.sbin/bsdinstall/scripts/script b/usr.sbin/bsdinstall/scripts/script
-index 24469589d1a5..f5104e94e5ff 100755
+index ae1c6b3011fa..7f5ec1c38f56 100755
 --- a/usr.sbin/bsdinstall/scripts/script
 +++ b/usr.sbin/bsdinstall/scripts/script
-@@ -143,7 +143,7 @@ else
+@@ -141,7 +141,7 @@ else
  		# case of EFI system partitions only. This *ONLY WORKS* if
  		# /boot/efi is empty and does not handle analagous problems on
  		# other systems (ARM, PPC64).
@@ -25,10 +25,10 @@ index 24469589d1a5..f5104e94e5ff 100755
  	done
  fi
 diff --git a/usr.sbin/bsdinstall/scripts/zfsboot b/usr.sbin/bsdinstall/scripts/zfsboot
-index c2d42f830a73..5345c556ea53 100755
+index a671841b15e5..2e72a3165409 100755
 --- a/usr.sbin/bsdinstall/scripts/zfsboot
 +++ b/usr.sbin/bsdinstall/scripts/zfsboot
-@@ -1464,6 +1464,9 @@ zfs_create_boot()
+@@ -1463,6 +1463,9 @@ zfs_create_boot()
  	             "$zroot_name" || return $FAILURE
  
  	if [ "$ZFSBOOT_BOOT_POOL" ]; then
@@ -38,7 +38,7 @@ index c2d42f830a73..5345c556ea53 100755
  		f_eval_catch $funcname printf "$PRINTF_CONF" \
  			vfs.root.mountfrom \
  			"\"zfs:$zroot_name/$zroot_bootfs\"" \
-@@ -1512,6 +1515,26 @@ zfs_create_boot()
+@@ -1511,6 +1514,26 @@ zfs_create_boot()
  		             return $FAILURE
  	fi
  

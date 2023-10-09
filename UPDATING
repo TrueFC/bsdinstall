@@ -6,6 +6,9 @@ COMMON ITEMS: section later in the file.  These instructions assume that you
 basically know what you are doing.
 
 
+20231009:
+	TAG: 15.0-CURRENT-9b03a5de73d4 created for OS revision 9b03a5de73d4.
+
 20230719:
 	TAG: 14.0-CURRENT-c5312bd79e66 created for OS revision c5312bd79e66.
 
